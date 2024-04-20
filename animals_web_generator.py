@@ -13,11 +13,9 @@ def read_html(file):
         return fileobj.read()
 
 
-
 def serialize_animal(animal_obj):
     """ Iterates through JSON data and returns extracted data """
-    output = ''
-    output += '            <li class="cards__item">\n'
+    output = '            <li class="cards__item">\n'
     if "name" in animal_obj:
         output += f'              <div class="card__title">{animal_obj["name"]}</div>\n'
     output += '              <p class="card__text">\n'
@@ -27,14 +25,13 @@ def serialize_animal(animal_obj):
         output += f'                  <strong>Location:</strong> {animal_obj["locations"][0]}<br/>\n'
     if "type" in animal_obj["characteristics"]:
         output += f'                  <strong>Type:</strong> {animal_obj["characteristics"]["type"]}<br/>\n'
-    output += '              </p>\n'
-    output += '            </li>\n'
+    output += '              </p>\n            </li>\n'
     return output
 
 
 def write_html(html_data, output, file):
     """ Inserts extracted data from JSON file in the html string and overwrites html file"""
-    new_html_data = html_data.replace("            __REPLACE_ANIMALS_INFO__\n", output)
+    new_html_data = html_data[:1738] + output + '        </ul>\n    </body>\n</html>'
     with open(file, "w") as fileobj:
         fileobj.write(new_html_data)
 

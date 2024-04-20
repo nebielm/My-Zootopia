@@ -659,5 +659,34 @@
       "lifespan": "13 – 14 years",
       "weight": "19 lbs"
     }
+  },
+  {
+    "name": "Sample (Name)",
+    "taxonomy": {
+      "kingdom": "Animalia",
+      "phylum": "Chordata",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Canidae",
+      "genus": "Canis",
+      "scientific_name": "Canis lupus"
+    },
+    "locations": [
+      "Sample (Location)"
+    ],
+    "characteristics": {
+      "distinctive_feature": "Long legs and wide, flat ears",
+      "temperament": "Mix of affectionate, loving, and stubborn",
+      "training": "Medium",
+      "diet": "Sample (Diet)",
+      "average_litter_size": "7",
+      "type": "Sample (Type)",
+      "common_name": "American Foxhound",
+      "slogan": "Sweet, kind, loyal, and very loving!",
+      "group": "Dog",
+      "color": "BlackWhiteTan",
+      "skin_type": "Hair",
+      "lifespan": "10 to 12 years"
+    }
   }
 ]
