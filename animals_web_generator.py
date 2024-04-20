@@ -43,18 +43,24 @@ def serialize_animal(animal_obj):
     """ Iterates through JSON data and returns extracted data """
     output = '            <li class="cards__item">\n'
     if "name" in animal_obj:
-        output += f'                <div class="card__title">{animal_obj["name"]}</div>\n'
-    output += '                <div class="card__text">\n                    <ul>\n'
+        output += (f'                <div class="card__title">'
+                   f'{animal_obj["name"]}</div>\n')
+    output += ('                <div class="card__text">\n'
+               '                    <ul>\n')
     if "diet" in animal_obj["characteristics"]:
         output += (f'                        '
-                   f'<li><strong>Diet:</strong> {animal_obj["characteristics"]["diet"]}</li>\n')
+                   f'<li><strong>Diet:</strong> '
+                   f'{animal_obj["characteristics"]["diet"]}</li>\n')
     if "locations" in animal_obj:
         output += (f'                        '
-                   f'<li><strong>Location:</strong> {animal_obj["locations"][0]}</li>\n')
+                   f'<li><strong>Location:</strong> '
+                   f'{animal_obj["locations"][0]}</li>\n')
     if "type" in animal_obj["characteristics"]:
         output += (f'                        '
-                   f'<li><strong>Type:</strong> {animal_obj["characteristics"]["type"]}</li>\n')
-    output += '                    </ul>\n                </div>\n            </li>\n'
+                   f'<li><strong>Type:</strong> '
+                   f'{animal_obj["characteristics"]["type"]}</li>\n')
+    output += ('                    </ul>\n                </div>\n'
+               '            </li>\n')
     return output
 
 
@@ -66,14 +72,17 @@ def writing_new_string(animals_data, user_choice):
             if "skin_type" not in animal_obj["characteristics"]:
                 output += serialize_animal(animal_obj)
         elif "skin_type" in animal_obj["characteristics"]:
-            if user_choice.capitalize() == animal_obj["characteristics"]["skin_type"]:
+            if (user_choice.capitalize() ==
+                    animal_obj["characteristics"]["skin_type"]):
                 output += serialize_animal(animal_obj)
     return output
 
 
 def write_html(html_data, output, file):
-    """ Inserts extracted data from JSON file in the html string and overwrites html file"""
-    new_html_data = html_data[:1738] + output + '        </ul>\n    </body>\n</html>'
+    """ Inserts extracted data from JSON file
+    into the html string and overwrites html file"""
+    new_html_data = html_data[:1738] + output + ('        </ul>\n'
+                                                 '    </body>\n</html>')
     with open(file, "w") as fileobj:
         fileobj.write(new_html_data)
 
