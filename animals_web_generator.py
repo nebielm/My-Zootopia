@@ -1,5 +1,6 @@
 import json
 
+
 def load_data(file_path):
     """ Loads a JSON file """
     with open(file_path, "r") as handle:
@@ -16,16 +17,16 @@ def extract_data(data):
     """ Iterates through JSON data and returns extracted data """
     output = ''
     for animal in data:
-
+        output += '            <li class="cards__item">\n'
         if "name" in animal:
-            output += f"            Name: {animal["name"]}\n"
+            output += f"            Name: {animal["name"]}<br/>\n"
         if "diet" in animal["characteristics"]:
-            output += f"            Diet: {animal["characteristics"]["diet"]}\n"
+            output += f"            Diet: {animal["characteristics"]["diet"]}<br/>\n"
         if "locations" in animal:
-            output += f"            Location: {animal["locations"][0]}\n"
+            output += f"            Location: {animal["locations"][0]}<br/>\n"
         if "type" in animal["characteristics"]:
-            output += f"            Type: {animal["characteristics"]["type"]}\n"
-        output += "\n"
+            output += f"            Type: {animal["characteristics"]["type"]}<br/>\n"
+        output += "            </li>\n"
     return output
 
 
