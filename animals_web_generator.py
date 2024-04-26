@@ -16,13 +16,11 @@ def read_html(file):
 def get_skin_type(animal_data):
     """ get list of skin types in  Database """
     skin_type_list = []
-    print("Available skin types:")
     for animal in animal_data:
         if "skin_type" in animal["characteristics"]:
             if animal["characteristics"]["skin_type"] not in skin_type_list:
-                print(animal["characteristics"]["skin_type"])
-                skin_type_list.append(animal["characteristics"]["skin_type"])
-    print("Missing skin type")
+                skin_type_list.append(animal["characteristics"]
+                                      ["skin_type"].capitalize())
     skin_type_list.append("Missing skin type")
     return skin_type_list
 
@@ -33,9 +31,8 @@ def get_user_choice(skin_type_list):
         user_choice = input("Enter skin type: ")
         if user_choice.capitalize() in skin_type_list:
             break
-        else:
-            print("You've entered a wrong choice. Try again.")
-            continue
+        print("You've entered a wrong choice. Try again.")
+        continue
     return user_choice
 
 
@@ -60,7 +57,7 @@ def serialize_animal(animal_obj):
                    f'<li><strong>Type:</strong> '
                    f'{animal_obj["characteristics"]["type"]}</li>\n')
     output += ('                    </ul>\n                </div>\n'
-               '            </li>\n')
+               '            </li>')
     return output
 
 
@@ -81,8 +78,7 @@ def writing_new_string(animals_data, user_choice):
 def write_html(html_data, output, file):
     """ Inserts extracted data from JSON file
     into the html string and overwrites html file"""
-    new_html_data = html_data[:1738] + output + ('        </ul>\n'
-                                                 '    </body>\n</html>')
+    new_html_data = html_data.replace("            __REPLACE_ANIMALS_INFO__", output)
     with open(file, "w") as fileobj:
         fileobj.write(new_html_data)
 
@@ -92,9 +88,12 @@ def main():
     animals_data = load_data('animals_data.json')
     old_html_data = read_html('animals_template.html')
     skin_types = get_skin_type(animals_data)
+    print("Available skin types:")
+    for skin_type in skin_types:
+        print(skin_type)
     user_choice = get_user_choice(skin_types)
     output = writing_new_string(animals_data, user_choice)
-    write_html(old_html_data, output, 'animals_template.html')
+    write_html(old_html_data, output, 'new_file.html')
 
 
 if __name__ == "__main__":
